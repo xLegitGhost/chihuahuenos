@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Native <dialog> scroll containment and backdrop styling (modern-web-guidance: dialog) */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.68);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Post-interaction validation feedback (modern-web-guidance: validate-input-after-interaction) */
+.field-hint {
+  display: block;
+  color: #475569;
+  font-size: 0.8rem;
+  margin-block-end: 0.25rem;
+}
+
+.error-msg {
+  display: none;
+  color: #b91c1c;
+  font-size: 0.825rem;
+  font-weight: 500;
+  margin-block-start: 0.35rem;
+}
+
+.validated-input {
+  font: inherit;
+  font-size: max(1rem, 1em);
+  min-height: 48px;
+}
+
+.validated-input:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 2px;
+}
+
+:is(.validated-input:user-invalid, .validated-input.user-invalid-fallback) {
+  border-color: #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+:is(.validated-input:user-invalid, .validated-input.user-invalid-fallback) + .error-msg {
+  display: block;
+}
+
+:is(.validated-input:user-valid, .validated-input.user-valid-fallback) {
+  border-color: #15803d;
+}
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
